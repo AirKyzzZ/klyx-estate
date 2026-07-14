@@ -5,7 +5,6 @@ import {
   motion,
   AnimatePresence,
   useScroll,
-  useTransform,
   useMotionValueEvent,
 } from "motion/react";
 import { site } from "@/lib/site";
@@ -17,17 +16,48 @@ const links = [
   { label: "Le studio", href: "#studio" },
 ];
 
+const shell = {
+  bar: {
+    marginTop: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    maxWidth: 1152,
+    borderRadius: 0,
+    paddingLeft: 24,
+    paddingRight: 24,
+    paddingTop: 14,
+    paddingBottom: 14,
+    backgroundColor: "rgba(250,247,241,0)",
+    borderColor: "rgba(216,203,180,0)",
+    boxShadow: "0 0 0 rgba(25,23,19,0)",
+  },
+  pill: {
+    marginTop: 10,
+    marginLeft: 12,
+    marginRight: 12,
+    maxWidth: 850,
+    borderRadius: 999,
+    paddingLeft: 22,
+    paddingRight: 10,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: "rgba(250,247,241,0.72)",
+    borderColor: "rgba(216,203,180,0.65)",
+    boxShadow: "0 14px 44px rgba(25,23,19,0.12)",
+  },
+};
+
 export function Nav() {
   const { scrollY } = useScroll();
+  const [pill, setPill] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [lastY, setLastY] = useState(0);
 
-  const heroEnd = typeof window !== "undefined" ? window.innerHeight * 3.8 : 3400;
-  const bg = useTransform(scrollY, [heroEnd, heroEnd + 400], ["rgba(250,247,241,0)", "rgba(250,247,241,0.9)"]);
-  const border = useTransform(scrollY, [heroEnd, heroEnd + 400], ["rgba(233,225,211,0)", "rgba(233,225,211,0.8)"]);
-
   useMotionValueEvent(scrollY, "change", (y) => {
+    const threshold =
+      typeof window !== "undefined" ? window.innerHeight * 4.4 : 3800;
+    setPill(y > threshold);
     if (!open) setHidden(y > lastY && y > 700);
     setLastY(y);
   });
@@ -39,29 +69,40 @@ export function Nav() {
     };
   }, [open]);
 
+  const textClass = pill
+    ? "text-ink-900"
+    : "text-sand-50 mix-blend-difference";
+
   return (
     <>
       <motion.header
-        style={{ backgroundColor: bg, borderColor: border }}
-        animate={{ y: hidden ? "-110%" : "0%" }}
+        animate={{ y: hidden ? "-130%" : "0%" }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 border-b"
+        className="fixed inset-x-0 top-0 z-50 flex justify-center"
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <motion.div
+          variants={shell}
+          initial="bar"
+          animate={pill ? "pill" : "bar"}
+          transition={{ type: "spring", stiffness: 240, damping: 30 }}
+          className={`flex w-full items-center justify-between border ${
+            pill ? "backdrop-blur-xl" : ""
+          }`}
+        >
           <a
             href="#film"
             onClick={() => setOpen(false)}
-            className="font-display text-xl text-sand-50 mix-blend-difference"
+            className={`font-display text-xl ${textClass}`}
           >
             Klyx <span className="italic">Estate</span>
           </a>
 
-          <nav className="hidden items-center gap-9 lg:flex">
+          <nav className="hidden items-center gap-8 lg:flex">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="group relative text-sm font-medium text-sand-50 mix-blend-difference"
+                className={`group relative text-sm font-medium ${textClass}`}
               >
                 {l.label}
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
@@ -72,7 +113,11 @@ export function Nav() {
           <div className="flex items-center gap-3">
             <a
               href={site.bookCallUrl}
-              className="hidden rounded-full border border-current px-5 py-2 text-sm font-medium text-sand-50 mix-blend-difference transition-opacity hover:opacity-70 lg:block"
+              className={`hidden rounded-full px-5 py-2 text-sm font-medium transition-colors lg:block ${
+                pill
+                  ? "bg-ink-900 text-sand-50 hover:bg-pine-700"
+                  : "border border-current text-sand-50 mix-blend-difference hover:opacity-70"
+              }`}
             >
               Réserver un appel
             </a>
@@ -80,7 +125,7 @@ export function Nav() {
               onClick={() => setOpen(!open)}
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={open}
-              className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 text-sand-50 mix-blend-difference lg:hidden"
+              className={`flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden ${textClass}`}
             >
               <span
                 className={`h-px w-6 bg-current transition-transform duration-300 ${
@@ -94,7 +139,7 @@ export function Nav() {
               />
             </button>
           </div>
-        </div>
+        </motion.div>
       </motion.header>
 
       <AnimatePresence>
