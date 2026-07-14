@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sand-50: #faf7f1;
+  --color-sand-100: #f4efe7;
+  --color-sand-200: #e9e1d3;
+  --color-sand-300: #d8cbb4;
+  --color-ink-900: #191713;
+  --color-ink-700: #3d382f;
+  --color-ink-500: #6b6353;
+  --color-pine-900: #16301f;
+  --color-pine-700: #1f3d2b;
+  --color-pine-500: #2e5c40;
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-hanken);
+  --font-label: var(--font-spline-mono);
+}
+
+body {
+  background: var(--color-sand-100);
+  color: var(--color-ink-900);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-pine-700);
+  color: var(--color-sand-50);
+}
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::after {
+    display: none;
+  }
+}
