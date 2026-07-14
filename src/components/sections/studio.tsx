@@ -3,7 +3,7 @@ import { Rubrique } from "@/components/rubrique";
 
 export function Studio() {
   return (
-    <section className="bg-sand-50 py-28 sm:py-40">
+    <section id="studio" className="bg-sand-50 py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Rubrique chapeau="qui est derrière les films" title="Le studio" />
         <Reveal delay={0.1}>

@@ -98,7 +98,7 @@ export function Footer() {
             </div>
             <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
               <p className="text-xs text-ink-500">
-                © 2026 Klyx Estate · Bordeaux
+                © 2026 Klyx Estate · Arcachon
               </p>
               <div className="sm:text-right">
                 <p className="max-w-[30ch] text-sm text-ink-700">

@@ -3,7 +3,7 @@ import { MediaTitle } from "@/components/media-title";
 
 export function RendezVous() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-28 sm:py-40">
+    <section id="rendez-vous" className="mx-auto max-w-6xl px-6 py-28 sm:py-40">
       <Reveal>
         <div className="border-t border-pine-700/25 pt-6">
           <span className="block text-sm text-ink-500">avant même de signer</span>

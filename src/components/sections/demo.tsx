@@ -5,7 +5,7 @@ import { FilmStrip } from "@/components/film-strip";
 
 export function Demo() {
   return (
-    <section className="bg-sand-50 py-24 sm:pt-44 sm:pb-32">
+    <section id="demonstration" className="bg-sand-50 py-24 sm:pt-44 sm:pb-32">
       <div className="mx-auto max-w-6xl px-6">
         <Rubrique chapeau="une villa, douze photos, un film" title="La démonstration" />
         <Reveal delay={0.1}>
