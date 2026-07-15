@@ -33,7 +33,10 @@ export function Cta() {
             </a>
           </Magnetic>
           <p className="mt-6 text-sm text-sand-100 [text-shadow:0_1px_12px_rgba(25,23,19,0.6)]">
-            Vingt minutes, sans engagement.
+            Vingt minutes, sans engagement. Ou par écrit&nbsp;:{" "}
+            <a href="mailto:contact@klyx.fr" className="underline hover:text-sand-50">
+              contact@klyx.fr
+            </a>
           </p>
         </Reveal>
       </div>

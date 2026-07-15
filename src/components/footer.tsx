@@ -104,8 +104,14 @@ export function Footer() {
                 <p className="max-w-[30ch] text-sm text-ink-700">
                   Un mandat à lancer, une question&nbsp;?
                   <span className="mt-1 block font-display text-lg text-ink-900 italic">
-                    Parlons-en de vive voix.
+                    Parlons-en, de vive voix ou par écrit.
                   </span>
+                  <a
+                    href="mailto:contact@klyx.fr"
+                    className="mt-1 inline-block text-sm text-pine-700 underline hover:text-ink-900"
+                  >
+                    contact@klyx.fr
+                  </a>
                 </p>
                 <a
                   href={site.bookCallUrl}
