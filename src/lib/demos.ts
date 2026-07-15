@@ -10,6 +10,20 @@ export type Demo = {
 
 export const demos: Demo[] = [
   {
+    slug: "cvmi-m271a",
+    agentFirstName: "vous",
+    propertyLine: "Propriété de charme, première ligne océan",
+    commune: "Saint-Jean-de-Luz",
+    videoSrc: "/media/demos/cvmi-m271a.mp4",
+    posterSrc: "/media/demos/cvmi/poster.jpg",
+    stills: [
+      "/media/demos/cvmi/still-1.jpg",
+      "/media/demos/cvmi/still-2.jpg",
+      "/media/demos/cvmi/still-3.jpg",
+      "/media/demos/cvmi/still-4.jpg",
+    ],
+  },
+  {
     slug: "villa-demonstration",
     agentFirstName: "vous",
     propertyLine: "Villa des Pins",
